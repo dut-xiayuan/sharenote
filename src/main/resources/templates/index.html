@@ -1,11 +1,119 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Share my note</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-    <p th:text="${note}"></p>
-    <p th:text="${index}"></p>
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8"/>
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>我的全局粘贴板 - Home Page</title>
+    <meta name="description" content="My globel clipboard"/>
+    <meta name="keywords" content="share note"/>
+    <meta name="author" content="Jenn, ThemeForces.com xiayuan"/>
+    
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.2.0/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+
+    <!-- Slider
+    ================================================== -->
+    <link href="css/owl.carousel.css" rel="stylesheet" media="screen"/>
+    <link href="css/owl.theme.css" rel="stylesheet" media="screen"/>
+
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css"  href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
+
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <!-- Home Section -->
+    <div id="home">
+        <div class="container text-center">
+
+            <div class="content">
+                <h4>最新的CTRL+V</h4>
+		<hr/>
+                <div class="header-text" style="border: 1px solid #ffffff;margin-bottom: 30px;">
+                    <h1><span id="head-title"><p th:text="${note}"></p></span></h1>
+                </div>
+                <input name="index" type="hidden" th:value="${index}"/>
+                <div class="text-center">
+                    <a id="ctrlv" href="#" class="btn send-btn">CTRL+V</a>
+                </div>
+            </div>
+
+            <div id="contact" style="display: none;">
+                <h4>新的CTRL+C</h4>
+                <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+                <div class="text-center">
+                    <a id="save" href="#" class="btn send-btn">Send</a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <nav id="footer">
+        <div class="container">
+             <div class="pull-left">
+                <p>All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/SmoothScroll.js"></script>
+    <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
+
+    <!-- Javascripts
+    ================================================== -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+        $("a#ctrlv").click(function(){
+            $("div#contact").css("display", "block");
+            $("div.content").css("display", "none");
+        });
+        $("a#save").click(function(){
+            var saveText = $("textarea.form-control").val();
+            $.post("save",
+                {
+                    note:saveText
+                },
+                function(data, status){
+                    parent.location.reload();
+                }
+            );
+        });
+    </script>
+  </body>
 </html>

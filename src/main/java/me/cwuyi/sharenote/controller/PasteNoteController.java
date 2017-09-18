@@ -19,8 +19,9 @@ public class PasteNoteController {
     NoteService noteService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public void save(String note) {
+    public String save(String note) {
         noteService.saveNote(note);
+        return "index";
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.POST)
@@ -32,11 +33,13 @@ public class PasteNoteController {
     }
 
     @RequestMapping(value = "")
-    public ModelAndView index(String index) {
-        ModelAndView mav = new ModelAndView("/templates");
-        String note = noteService.getNote(1l);
+    public ModelAndView index() {
+        ModelAndView mav = new ModelAndView();
+        String note = noteService.getNote(0l);
+        mav.setViewName("/index");
         mav.addObject("note", note);
         mav.addObject("index", "1");
+
         return mav;
     }
 }

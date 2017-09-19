@@ -36,7 +36,7 @@ public class PasteNoteController {
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView();
         String note = noteService.getNote(0l);
-        mav.setViewName("/index");
+        mav.setViewName("index");
         mav.addObject("note", note);
         mav.addObject("index", "1");
 

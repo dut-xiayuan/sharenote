@@ -21,6 +21,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Autowired(required = false)
     public void setRedisTemplate(RedisTemplate redisTemplate) {
+
         RedisSerializer stringSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringSerializer);
         redisTemplate.setValueSerializer(stringSerializer);

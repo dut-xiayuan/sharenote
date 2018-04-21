@@ -1,13 +1,16 @@
 package me.cwuyi.sharenote;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by XIA on 2017/9/11.
  */
 
-@SpringBootApplication
+@Configuration
+@EnableAutoConfiguration
 public class Application {
 
     public static void main(String[] args)  {

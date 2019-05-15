@@ -1,2 +1,2 @@
 # sharenote
-global clip board
+global clipboard

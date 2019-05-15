@@ -1,2 +1,2 @@
 # sharenote
-全局粘贴板
+global clip board
